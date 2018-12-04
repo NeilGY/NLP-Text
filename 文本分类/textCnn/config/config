@@ -1,0 +1,24 @@
+{
+    "seq_len": 53,
+    "vocab_size": 12761,
+    "num_classes": 2,
+    "vec_file": "data/vec.txt",
+    "log_path": "log",
+    "embedding_size": 120,
+    "filter_sizes": [
+        3,
+        4,
+        5
+    ],
+    "num_filters": 100,
+    "dropout_keep_prob": 0.5,
+    "lr": 0.5,
+    "l2_reg_lambda": 0.2,
+    "batch_size": 64,
+    "num_epochs": 200,
+    "evaluate_every": 100,
+    "num_checkpoints": 5,
+    "checkpoints_path": "result",
+    "positive_data_file": "data\\rt-polarity.pos",
+    "negative_data_file": "data\\rt-polarity.neg"
+}
