@@ -1,0 +1,1 @@
+图片检索,搜索引擎,关键技术,总体结构图,image retrieval,search engine,key technology,system structure diagram,图像搜索引擎,搜索引擎检索,模式分析,search engine,image,design,information extraction,图片检索,检索模式,analysis,key technology,realization,总体结构图,structure,相关信息,提取信息,关键技术,provided,HTML文档,Web图片,

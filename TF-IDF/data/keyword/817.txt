@@ -1,0 +1,1 @@
+小生境,粒子群,二维不规则,离散化,排样,niche,particle swarm,two-dimensional irregular,discrete,nesting,二维排样,小生境技术,粒子群算法,不规则,零件排样,粒子群优化算法,坐标,搜索性能,求解问题,零件轮廓,决策方案,二维图形,离散化,转化,运用,思想,实验,经典,基础,方法,

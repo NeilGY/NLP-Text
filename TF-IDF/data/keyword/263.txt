@@ -1,0 +1,1 @@
+P2P流媒体,节点选择,直觉模糊集,得分函数,P2P streaming media,Node selection,Intuitionistic fuzzy sets,Scoring function,流媒体系统,直觉模糊集,中节点,选择策略,Streaming Media System,整体效率,选择算法,网络,模糊理论,非结构化,得分函数,随机性,适应性,可靠度,动态性,资源,运用,排序,能力,概念,

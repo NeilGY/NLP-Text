@@ -1,0 +1,1 @@
+夏季雨型预报,模糊支持向量机,多分类,summer rainfall pattern prognostic,fuzzy support vector machine,multi-class classification,模糊支持向量机,夏季雨型,预报方法研究,support vector machine,summer rainfall,分类方法,learning process,模糊隶属度函数,非线性,预报模型,抗干扰能力,分类超平面,多分类算法,new model,预报能力,相关分析,线性问题,统计理论,统计方法,回归方法,

@@ -1,0 +1,1 @@
+SOA,JSP,信息管理,服务,SOA,JSP,information management,service,SOA,毕业,信息管理系统,系统设计,base,information management system,realization,Web services,frame model,programming language,架构模型,business process,服务集成,JSP,design,transfer of,paper,Based,指导思想,业务流程,

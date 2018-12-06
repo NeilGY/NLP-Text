@@ -1,0 +1,1 @@
+病虫入侵检测,BP神经网络,异常检测,规则库,门限检测,时序,pest and diseases intrusion detection,BP neural network,anomaly detection,rule set,threshold detection,time thread,入侵检测技术,神经网络算法,棉花病虫害,病虫害预报,系统模型,BP algorithm,technology,based,intrusion detection system,information,neural network algorithm,cotton production,spatial domain,信息安全领域,insect pest,人工神经网,预报系统,叶面,信息表现,棉花生产,

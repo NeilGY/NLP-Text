@@ -1,0 +1,1 @@
+人-机-环,模拟仿真,数学模型,评估,飞机,环境,系统模拟,数学模型,operation system,操纵系统,evaluation system,模糊控制模型,control model,综合评估系统,设计周期,模拟仿真技术,驾驶员,传递函数模型,math model,最佳匹配,综合分析,整体效能,性能指标,系统计算,

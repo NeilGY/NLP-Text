@@ -1,0 +1,1 @@
+Agent,体系结构,通信语言,协作机制,Agent技术,分析,Agent technology,analysis,Agent系统,知识交互,协作机制,系统开发,通信语言,体系结构,理论依据,技术支持,技术原理,智能化,Agnet,概念,CSCL,

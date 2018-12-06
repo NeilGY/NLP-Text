@@ -1,0 +1,1 @@
+Job—Shop调度,多目标,并行机,混合遗传算法,Job-Shop scheduling,muhi-objective,multi machine,hybrid genetic algorithm,并行机,环境,多目标,调度问题,parallel machine,cluster analysis,不同交货期窗口,solution set,遗传算法,完工时间,拖期惩罚,邻域搜索,工序排序,工件,仿真实验,调整时间,编码方式,染色体,质量,融合,

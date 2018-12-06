@@ -1,0 +1,1 @@
+异常检测,统计方法,神经网络方法,基于规则的方法,支持向量机,novelty detection,statistical approaches,neural network approaches,rule-based approach,SVM approach,基于标准,数据集,异常检测技术,实验分析,Benchmark,Based,Experimental Analysis,异常检测算法,novelty detection,Gaussian Mixture,Operating Characteristics,experimental analysis,different,the differences,performance,literature,comparison,algorithms,benchmark,性能,

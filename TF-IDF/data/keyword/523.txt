@@ -1,0 +1,1 @@
+云计算,Web应用云,Openstack,Cloudify,弹性云,SPI(SaaS-Paas-IaaS),Cloud Computing,Web Application Cloud,Openstack,Cloudify,Elastic Computing Cloud,SPI(SaaS-Paas-IaaS ),技术,高可用,应用服务器,Open Source,web application,resources management,硬件资源管理,客户端程序,运行平台,架构模型,集群方案,基本特征,分层架构,云计算,用户量,企业级,计算机,访问量,缺陷,负载,

@@ -1,0 +1,1 @@
+Agent结构,结构模型,形式化描述,映射问题,Agent structure,structure model,formal description,mapping problem,结构模型,形式化描述,描述分析,formal description,test and verify,structure model,Agent system,实例验证,结构描述,构造,电子谈判,不完整,映射,应用,行为,物理,设计,目标,

@@ -1,0 +1,1 @@
+粗糙集,概念格,粗糙概念格,多属性决策,决策规则,粗糙概念格,属性约简方法,规则获取,Rule Acquisition,Attribute Reduction,Concept Lattice,决策背景,规则提取,概念格理论,提取方法,辨识矩阵,有效性,粗糙集,基础,函数,

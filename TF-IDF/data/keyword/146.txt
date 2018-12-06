@@ -1,0 +1,1 @@
+红外辐射特征,K均值,局部最优,infrared radiation characteristics,K-means,local optimization,飞机,红外辐射特征,特征聚类算法,Radiation Characteristics,飞行状态,均值算法,搜索能力,最优解,模拟退火算法,局部,遗传算法,寻优能力,分析判断,正确率,改变比,因子,分类,仿真,

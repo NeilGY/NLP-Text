@@ -1,0 +1,1 @@
+J2ME,JSR-179,SERVLET,ArcGISSERVER,氮素平衡模型,J2ME,JSR-179,SERVLET,ArcGIS SERVER,Nitrogen Balance Model,J2ME技术,未来农业,氮素,平衡施肥,应用研究,Technology,coordinate transformation,ArcGIS SERVER,technology,坐标转换,氮肥平衡,nitrogen balance,key technologies,model selection,Servlet,application,坐标位置,转换模型,智能手机,应用前景,

@@ -1,0 +1,1 @@
+邮政,网络资源,混合模型,IP语音,网守,The postal,The network resources,Hybrid model,Voice over IP,Gatekeeper,语音系统,设计原则,network architecture,communication system,maximum efficiency,rapid prototyping,network structure,network resources,key techniques,网络结构,hybrid model,信息化建设,最大效能,资源基础,原型模式,语音通信,邮政企业,系统移植,网络架构,混合模型,

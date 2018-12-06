@@ -1,0 +1,1 @@
+小波变换,阈值法,小波去噪,阈值系数测试,wavelet transform,threshold method,wavelet denoising,threshold coefficient,小波阈值法,裂纹,图像去噪,判断的准确性,阈值方法,图像边缘,信息完整性,峰值信噪比,阈值函数,小波系数,小波算法,图像噪声,数字,视觉效果,边缘保护,保持指数,优化,实验,获取,公式,

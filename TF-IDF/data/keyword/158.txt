@@ -1,0 +1,1 @@
+体感仿真算法,Steward动感平台,数值化算法,somatosensory simulation algorithm,Steward motion platform,numerical algorithm,动感平台,仿真,数值化,算法研究,Washout Filter,degrees of freedom,transfer function,attitude control,sports attitude,体感模拟算法,纵向加速度,低通滤波器,姿态控制,运动姿态,实时模拟,实例验证,滤波方法,六自由度,函数转换,差分方程,

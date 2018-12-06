@@ -1,0 +1,1 @@
+自然语言处理,机器翻译,句法对齐,翻译规则抽取,解码,Natural Language Processing,Machine Translation,Syntactic Alignment,Translation Rule Extraction,Decoding,句法树,统计机器翻译,问题分析,machine translation,language modeling,语言模型,研究方向,文本,解决方案,重构,实验,解码,基础,对齐,

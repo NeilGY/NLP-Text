@@ -1,0 +1,1 @@
+庭审,录播,短时能量,过零率,court recording short-time energy zero-crossing counts,法庭庭审,录播系统,设计方案,switching function,recording system,语音信道,系统功能,算法实现,实用新型,人机界面,切换功能,短时能量,过零率,应用,模块,描述,架构,构成,多路,

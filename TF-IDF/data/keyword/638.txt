@@ -1,0 +1,1 @@
+Bootloader,ARM,嵌入式系统,嵌入式系统,Bootloader,分析与设计,Embedded System,Based,Design,S3C4510B,Linux操作系统,嵌入式应用,主要任务,引导过程,一般流程,开发过程,关键技术,代码设计,总结,芯片,环节,
