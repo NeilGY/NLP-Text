@@ -1,0 +1,27 @@
+{
+    "seq_len": 600,
+    "vocab_size": 5000,
+    "num_classes": 10,
+    "vocab_file": "data/cnews.vocab.txt",
+    "log_path": "log",
+    "embedding_size": 120,
+    "filter_sizes": [
+        3,
+        4,
+        5
+    ],
+    "num_filters": 100,
+    "dropout_keep_prob": 0.5,
+    "lr": 0.001,
+    "l2_reg_lambda": 0.2,
+    "batch_size": 64,
+    "num_epochs": 10,
+    "evaluate_every": 100,
+    "num_checkpoints": 5,
+    "checkpoints_path": "result",
+    "train_file": "data\\cnews.train.txt",
+    "test_file": "data\\cnews.test.txt",
+    "val_file": "data\\cnews.val.txt",
+    "category_to_id_file": "data/cnews.category_to_id.txt",
+    "word_to_id_file": "data/cnews.word_to_id.txt"
+}
