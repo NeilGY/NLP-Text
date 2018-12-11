@@ -8,6 +8,7 @@ from collections import OrderedDict
 import os
 import time
 from datetime import timedelta
+import tensorflow.contrib.keras as kr
 
 
 #数据的路径
@@ -22,7 +23,7 @@ tf.flags.DEFINE_string("config_path", 'config', "")
 #模型参数
 tf.flags.DEFINE_integer("embedding_size", 120, "Dimensionality of character embedding (default: 120)")
 #模型类型
-tf.flags.DEFINE_string("model_type", "rnn", "model type in (cnn,rnn)")
+tf.flags.DEFINE_string("model_type", "cnn", "model type in (cnn,rnn)")
 #rnn
 tf.flags.DEFINE_integer("lstm_dim", 100, "num of lstm")
 
@@ -139,7 +140,6 @@ def train():
         last_improved = 0  # 记录上一次提升批次
         require_improvement = 1000  # 如果超过1000轮未提升，提前结束训练
         flag = False #是否结束训练
-        logger.info()
         #num_epochs:防止前面的学习丢失了一些特征,需要重复学习样本
         for i in range(train_config['num_epochs']):
             for x_input,y_output in batch_iter(x_train_data,y_train_data,train_config['batch_size']):
@@ -147,17 +147,17 @@ def train():
 
                 step, acc, loss = model.run_step(sess,x_input,y_output)
                 #迭代100次评估一次模型
-                if(step % FLAGS.evaluate_every == 0):
+                if(total_batch % FLAGS.evaluate_every == 0):
                     time_dif = get_time_dif(start_time)
                     logger.info("train: iterator{}: step:{}/{} acc:{} loss:{} time:{}".format(i+1,step%len_data,len_data,acc,loss,time_dif ))
-                    val_acc, text_los = model.text_step(sess,x_val_data,y_val_data)
+                    val_acc, text_los = evaluate(sess,model,x_val_data,y_val_data)
                     logger.info("test: acc:{} loss:{} ".format(acc,loss ))
                     #保存模型
                     if acc>0.5 and val_acc > 0.5 and val_acc > best_acc_val:
                         last_improved = total_batch
                         best_acc_val = val_acc
                         checkpoint_path = os.path.join(FLAGS.checkpoints_path,'checkpoints')
-                        saver = tf.train.Saver(tf.global_variables(),max_to_keep=FLAGS.max_to_keep)
+                        saver = tf.train.Saver(tf.global_variables(),max_to_keep=FLAGS.num_checkpoints)
                         saver.save(sess,checkpoint_path,global_step=step)
                 if total_batch - last_improved > require_improvement:
                     # 验证集正确率长期不提升，提前结束训练
@@ -170,35 +170,51 @@ def train():
                 logger.info('训练结束:{}'.format(time_dif))
                 break
 
+def evaluate(sess,model, x_val, y_val):
+    """评估在某一数据上的准确率和损失"""
+    total_loss = 0.0
+    total_acc = 0.0
+    total_num = 0
+    for x_input, y_output in batch_iter(x_val, y_val, 128):
+        total_num += 1
+        val_acc, text_los = model.text_step(sess, x_input, y_output)
+        total_loss += text_los
+        total_acc += val_acc
+
+    return total_acc / total_num, total_loss / total_num
+
+
 
 def evaluate_line():
     session = tf.Session()
     session.run(tf.global_variables_initializer())
-    saver = tf.train.Saver()
-    checkpoint_path = os.path.join(FLAGS.checkpoints_path, 'checkpoints')
-    saver.restore(sess=session, save_path=checkpoint_path)  # 读取保存的模型
+    checkpoint_path = os.path.join(FLAGS.checkpoints_path)
+    checkpoint_file = tf.train.latest_checkpoint(checkpoint_path)
+    saver = tf.train.import_meta_graph("{}.meta".format(checkpoint_file))
+    saver.restore(session,checkpoint_file)  # 读取保存的模型
     config_path = os.path.join(FLAGS.config_path, 'config')
     test_config = load_config(config_path)
     model = Model(test_config)
     _, word_to_id = read_vocab(test_config['vocab_file'])
     categorys, cat_to_id = read_category()
+    session.run(tf.global_variables_initializer())
 
-
-    with True:
+    while True:
         line = input("请输入测试句子:")
-        line = clean_str(line)
-        x_input = [word_to_id[x] for x in line if x in word_to_id]
-        predict = model.evaluate(x_input)
-        print(categorys[predict])
+        x_input = [[word_to_id[x] for x in line if x in word_to_id]]
+        x_pad = kr.preprocessing.sequence.pad_sequences(x_input, 600)
+        predict = model.evaluate(session,x_pad)
+        print(categorys[predict[0][0]])
 
 def main(_):
+    evaluate_line()
 
-    if FLAGS.is_train:
-        if FLAGS.is_clean:
-            clean(FLAGS)
-        train()
-    else:
-        evaluate_line()
+    # if FLAGS.is_train:
+    #     if FLAGS.is_clean:
+    #         clean(FLAGS)
+    #     train()
+    # else:
+    #     evaluate_line()
 
 if __name__ == '__main__':
     tf.app.run(main)

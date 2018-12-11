@@ -19,13 +19,15 @@ class Model(object):
         self.num_class = config['num_classes']
         self.num_filter = config['num_filters']
         self.filter_sizes = config['filter_sizes']
-        self.dropout_keep = config['dropout_keep_prob']
+
         self.learn_rate = config['lr']
         self.l2_reg_lambda = config['l2_reg_lambda']
         self.l2_loss = tf.constant(0.0)
         self.model_type = config['model_type']
         self.lstm_dim = config['lstm_dim']
 
+        # self.dropout_keep = config['dropout_keep_prob']
+        self.dropout_keep = tf.Variable(config['dropout_keep_prob'], name="global_step", trainable=False, dtype=tf.float32)
         self.inputs = tf.placeholder(tf.int32,shape=[None,self.seq_len])
         self.outputs = tf.placeholder(tf.float32,shape=[None,self.num_class])
         self.global_step = tf.Variable(0,name="global_step",trainable=False)
@@ -37,6 +39,7 @@ class Model(object):
         else:
             self.network = self.rnn_network()
 
+        self.predict = tf.argmax(tf.nn.softmax(self.network), 1)
         with tf.variable_scope("loss"):#损失函数计算层
             self.loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=self.network,labels=self.outputs)) + self.l2_reg_lambda * self.l2_loss
         with tf.variable_scope("optimizer"):#优化损失层
@@ -44,7 +47,7 @@ class Model(object):
         with tf.variable_scope("Accuracy"):
             # softmax获得每个特征的占比(每条数据对应的特征数占比总和为1)
             # argmax获得最大占比的下标位置
-            self.predict = tf.argmax(self.network, 1)
+
             self.accuracy = tf.reduce_mean(tf.cast(tf.equal(self.predict,tf.argmax(self.outputs,1)),dtype=tf.float32))
 
 
@@ -76,10 +79,10 @@ class Model(object):
             #对三个不同类型的卷积核合并,每种类型的卷积和数量是num_filter,
             num_filter_total = self.num_filter * len(self.filter_sizes)
             network = tf.concat(convs,3)
-            network = tf.reshape(self.network,[-1,num_filter_total])
+            network = tf.reshape(network,[-1,num_filter_total])
 
         with tf.variable_scope("softMax_layer"):#全连接的softMax层 输出每个类别的概率
-            network = tf.nn.dropout(self.network,self.dropout_keep)
+            network = tf.nn.dropout(network,self.dropout_keep)
             W = tf.get_variable("softmax_w",shape=[num_filter_total,self.num_class],initializer=self.initializer)
             B = tf.get_variable("softmax_b",shape=[self.num_class],initializer=self.initializer)
             network = tf.nn.xw_plus_b(network,W,B)
@@ -129,11 +132,19 @@ class Model(object):
         return acc,los
 
     def evaluate(self,sess,x_inputs):
-        result = sess.run([self.predict],feed_dict=self.create_feed_dict(x_inputs))
+        result = sess.run([self.predict],feed_dict=self.create_val_feed_dict(x_inputs))
+        return result
 
     def create_feed_dict(self,x_inputs,y_outputs):
         feed_dict = {
             self.inputs:x_inputs,
             self.outputs:y_outputs
+        }
+        return feed_dict
+
+    def create_val_feed_dict(self,x_inputs):
+        feed_dict = {
+            self.inputs:x_inputs,
+            self.dropout_keep:1.0
         }
         return feed_dict
