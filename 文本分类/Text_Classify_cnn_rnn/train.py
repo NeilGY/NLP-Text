@@ -12,7 +12,7 @@ import tensorflow.contrib.keras as kr
 
 
 #数据的路径
-tf.flags.DEFINE_string("train_file", os.path.join('data','cnews.val.txt'), "Data source for the train data.")
+tf.flags.DEFINE_string("train_file", os.path.join('data','cnews.test.txt'), "Data source for the train data.")
 tf.flags.DEFINE_string("test_file", os.path.join('data','cnews.test.txt'), "Data source for the test data.")
 tf.flags.DEFINE_string("val_file", os.path.join('data','cnews.val.txt'), "Data source for the valid data.")
 tf.flags.DEFINE_string("vocab_file", os.path.join('data/cnews.vocab.txt'), "vocabe_file for data")
@@ -41,7 +41,7 @@ tf.flags.DEFINE_float("l2_reg_lambda", 0.2, "L2 regularization lambda (default: 
 # Training parameters  训练参数
 
 tf.flags.DEFINE_integer("batch_size", 64, "Batch Size (default: 64)")
-tf.flags.DEFINE_integer("num_epochs", 10, "Number of training epochs (default: 200)")
+tf.flags.DEFINE_integer("num_epochs", 100, "Number of training epochs (default: 200)")
 #评估
 tf.flags.DEFINE_integer("evaluate_every", 100, "Evaluate model on dev set after this many steps (default: 100)")
 #保存
@@ -151,7 +151,7 @@ def train():
                     time_dif = get_time_dif(start_time)
                     logger.info("train: iterator{}: step:{}/{} acc:{} loss:{} time:{}".format(i+1,step%len_data,len_data,acc,loss,time_dif ))
                     val_acc, text_los = evaluate(sess,model,x_val_data,y_val_data)
-                    logger.info("test: acc:{} loss:{} ".format(acc,loss ))
+                    logger.info("test: acc:{} loss:{} ".format(val_acc,text_los ))
                     #保存模型
                     if acc>0.5 and val_acc > 0.5 and val_acc > best_acc_val:
                         last_improved = total_batch
@@ -177,7 +177,7 @@ def evaluate(sess,model, x_val, y_val):
     total_num = 0
     for x_input, y_output in batch_iter(x_val, y_val, 128):
         total_num += 1
-        val_acc, text_los = model.text_step(sess, x_input, y_output)
+        val_acc, text_los,pre = model.text_step(sess, x_input, y_output)
         total_loss += text_los
         total_acc += val_acc
 
@@ -186,18 +186,21 @@ def evaluate(sess,model, x_val, y_val):
 
 
 def evaluate_line():
-    session = tf.Session()
-    session.run(tf.global_variables_initializer())
-    checkpoint_path = os.path.join(FLAGS.checkpoints_path)
-    checkpoint_file = tf.train.latest_checkpoint(checkpoint_path)
-    saver = tf.train.import_meta_graph("{}.meta".format(checkpoint_file))
-    saver.restore(session,checkpoint_file)  # 读取保存的模型
     config_path = os.path.join(FLAGS.config_path, 'config')
     test_config = load_config(config_path)
-    model = Model(test_config)
+
     _, word_to_id = read_vocab(test_config['vocab_file'])
     categorys, cat_to_id = read_category()
+    contents, labels = read_file('data/cnews.val2.txt')
+    model = Model(test_config)
+
+    session = tf.Session()
     session.run(tf.global_variables_initializer())
+    saver = tf.train.Saver()
+    # 读取模型
+    checkpoint_path = os.path.join(FLAGS.checkpoints_path)
+    checkpoint_file = tf.train.latest_checkpoint(checkpoint_path)
+    saver.restore(session, checkpoint_file)
 
     while True:
         line = input("请输入测试句子:")
